@@ -33,29 +33,29 @@
 
 **請注意：** 您需要先安裝 [Node.js](https://nodejs.org/) (建議使用 LTS 版本)。
 
-### 1. 啟動後端伺服器
+## 1. 啟動後端伺服器
 
 
-# 進入後端資料夾
+### 進入後端資料夾
 cd backend
 如果是第一次啟動，需要先安裝依賴套件
 npm install 
 
-# 啟動後端伺服器 (預設運行在 http://localhost:3001)
+### 啟動後端伺服器 (預設運行在 http://localhost:3001)
 node server.js
 
 
-### 2. 啟動前端伺服器
+## 2. 啟動前端伺服器
 
-# 進入前端資料夾(開啟一個新的終端機)
+### 進入前端資料夾(開啟一個新的終端機)
 cd frontend
 如果是第一次啟動，需要先安裝依賴套件
 npm install
 
-# 啟動前端開發伺服器 (預設運行在 http://localhost:5173)
+### 啟動前端開發伺服器 (預設運行在 http://localhost:5173)
 npm run dev
 
-### 3. 開啟瀏覽器
+## 3. 開啟瀏覽器
 
 
 http://localhost:5173 開始使用前台點餐功能
