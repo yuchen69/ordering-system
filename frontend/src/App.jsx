@@ -90,6 +90,14 @@ function App() {
       <main>
         <Routes>
           <Route 
+            path="/admin/meals" 
+            element={
+              <ProtectedRoute isAuth={isAuth}>
+               <AdminMealManager />
+               </ProtectedRoute>
+            } 
+          />
+          <Route 
             path="/" 
             element={<MealList onAddToCart={handleAddToCart} />} 
           />

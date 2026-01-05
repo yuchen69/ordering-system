@@ -1,7 +1,9 @@
 const express = require('express');
 const sqlite3 = require('sqlite3').verbose();
 const cors = require('cors');
-const bcrypt = require('bcryptjs');const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+
 const app = express();
 const port = 3001;
 const dbFile = 'database.db';
@@ -91,7 +93,6 @@ const db = new sqlite3.Database(dbFile, (err) => {
   });
 });
 
-
 app.get('/api/categories', (req, res) => {
   db.all("SELECT * FROM categories", [], (err, rows) => {
     if (err) return res.status(500).json({ error: err.message });
@@ -123,7 +124,9 @@ app.post('/api/orders', (req, res) => {
      return res.status(400).json({ error: '顧客姓名或桌號為必填欄位' });
   }
   const itemsJson = JSON.stringify(items); 
-  const sql = 'INSERT INTO orders (customer_name, items_json, total_price) VALUES (?, ?, ?)';
+  
+  const sql = "INSERT INTO orders (customer_name, items_json, total_price, created_at) VALUES (?, ?, ?, datetime('now', 'localtime'))";
+  
   db.run(sql, [customerName, itemsJson, totalPrice], function(err) {
     if (err) return res.status(500).json({ error: err.message });
     res.status(201).json({ message: '訂單建立成功!', orderId: this.lastID }); 
@@ -160,7 +163,6 @@ function authenticateToken(req, res, next) {
     next(); 
   });
 }
-
 
 app.get('/api/admin/orders', authenticateToken, (req, res) => {
   const sql = "SELECT * FROM orders ORDER BY created_at DESC";
